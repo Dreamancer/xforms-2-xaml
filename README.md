@@ -1,16 +1,16 @@
 # XForms2XAML
 
 ## Zadanie
-Cielom projektu je vytvori XSL Stylesheet a jednoduchú apku v jazuku JAVA, ktoré umonia prevod formulárov popísanıch pomocou štandardu XForms na desktopové rozhrania popísané pomocou jazyka XAML.
+Cielom projektu je vytvoriÅ¥ XSL Stylesheet a jednoduchÃº aplikaci v jazuku JAVA, ktorÃ© umoÅ¾nia prevod formulÃ¡rov popÃ­sanÃ½ch pomocou Å¡tandardu XForms na desktopovÃ© rozhrania popÃ­sanÃ© pomocou jazyka XAML.
 
 ## Autori
-- [Marek Èepèek][link-marek]
+- [Marek ÄŒepÄek][link-marek]
 - [Riva Nathans][link-riva]
-- Lucia Sittová
+- Lucia SittovÃ¡
 - [Jakub Horniak][link-jakub]
 
-## Vedúci projektu
-- [Mgr. Ludìk Bártek, Ph.D.][link-bartek]
+## VedÃºci projektu
+- [Mgr. LudÄ›k BÃ¡rtek, Ph.D.][link-bartek]
 
 [link-marek]: https://github.com/marekcepcek
 [link-riva]: https://github.com/r-i-v-a
