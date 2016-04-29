@@ -6,7 +6,7 @@ Cielom projektu je vytvoriť XSL Stylesheet a jednoduchú aplikaci v jazuku JAVA
 ## Autori
 - [Marek Čepček][link-marek]
 - [Riva Nathans][link-riva]
-- Lucia Sittová
+- [Lucia Sittová][link-lucia]
 - [Jakub Horniak][link-jakub]
 
 ## Vedúci projektu
@@ -16,3 +16,4 @@ Cielom projektu je vytvoriť XSL Stylesheet a jednoduchú aplikaci v jazuku JAVA
 [link-riva]: https://github.com/r-i-v-a
 [link-jakub]: https://github.com/Dreamancer
 [link-bartek]: https://github.com/ludekbartek
+[link-lucia]: https://github.com/Wanderer186
