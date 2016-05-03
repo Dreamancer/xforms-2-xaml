@@ -1,0 +1,11 @@
+XAML documentation
+------------------
+
+https://www.microsoft.com/en-us/download/details.aspx?id=19600
+(downloadable documentation set)
+
+https://en.wikipedia.org/wiki/Extensible_Application_Markup_Language
+(Wikipedia)
+
+https://msdn.microsoft.com/en-us/library/cc189036(v=vs.95).aspx
+(Microsoft: XAML Overview)
