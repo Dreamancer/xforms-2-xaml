@@ -1,0 +1,29 @@
+XForms documentation
+--------------------
+
+https://www.w3.org/MarkUp/Forms/
+(W3C Working Group)
+
+https://www.w3.org/TR/xforms/
+(W3C XForms 1.1)
+
+https://en.wikipedia.org/wiki/XForms
+(Wikipedia)
+
+https://en.wikibooks.org/wiki/XForms
+(Wikibooks)
+
+https://www.w3.org/MarkUp/Forms/#waXForms
+(What Are XForms?)
+
+https://www.w3.org/MarkUp/Forms/2003/xforms-for-html-authors.html
+(XForms for HTML Authors)
+
+https://www.w3.org/MarkUp/Forms/2006/xforms-qr
+(XForms Quick Reference)
+
+http://xformsinstitute.com/essentials/browse/book.php
+(XForms Essentials)
+
+http://xformsinstitute.com/validator/
+(XForms Validator)
