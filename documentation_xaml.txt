@@ -9,3 +9,6 @@ https://en.wikipedia.org/wiki/Extensible_Application_Markup_Language
 
 https://msdn.microsoft.com/en-us/library/cc189036(v=vs.95).aspx
 (Microsoft: XAML Overview)
+
+http://www.tutorialspoint.com/xaml/
+(tutorialspoint XAML tutorial)
