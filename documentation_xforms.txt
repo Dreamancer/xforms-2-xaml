@@ -23,7 +23,7 @@ https://en.wikipedia.org/wiki/XForms
 (Wikipedia)
 
 https://en.wikibooks.org/wiki/XForms
-(Wikibooks)
+(Wikibooks: also includes examples)
 
 https://www.w3.org/MarkUp/Forms/#waXForms
 (What Are XForms?)
