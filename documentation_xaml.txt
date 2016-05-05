@@ -12,3 +12,12 @@ https://msdn.microsoft.com/en-us/library/cc189036(v=vs.95).aspx
 
 http://www.tutorialspoint.com/xaml/
 (tutorialspoint XAML tutorial)
+
+http://www.codeproject.com/Articles/31137/WPF-Controls-A-Visual-Quick-Start
+(codeproject XAML controls tutorial)
+
+http://www.codeproject.com/Articles/30904/WPF-Layouts-A-Visual-Quick-Start
+(codeprojects XAML layouts tutorial)
+
+http://www.codeproject.com/Articles/33650/WPF-Lists-Views-A-Visual-Quick-Start
+(codeprojects XAML data views/lists tutorial)
