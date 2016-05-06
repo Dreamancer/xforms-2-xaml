@@ -3,7 +3,7 @@
 <!--
 	Document   : xforms-2-xaml.xsl
 	Created on : 29. dubna 2016, 0:50
-	Author     : Marek Cepcek
+	Author     : Marek Cepcek, Riva Nathans Kepych, add your name here
 	Description:
 		Purpose of transformation follows.
 -->
@@ -20,7 +20,11 @@
 		xmlns:local = "clr-namespace:FirstStepDemo" 
 		mc:Ignorable = "d" Title = "MainWindow" Height = "350" Width = "604"> 
 
-			<Grid></Grid> 
+			<Grid>
+				<!-- examples of how to make form elements in XAML: delete later -->
+				<TextBlock Text = "example text" Height = "30"/> 
+				<Button Content = "example button" Height = "30" Width = "80"/> 
+			</Grid> 
 
 		</Window> 
 	</xsl:template>
