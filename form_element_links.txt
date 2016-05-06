@@ -1,0 +1,32 @@
+form element links
+------------------
+
+button
+------
+
+XFORMS https://en.wikibooks.org/wiki/XForms/Trigger
+XAML http://www.tutorialspoint.com/xaml/xaml_button.htm
+
+checkbox
+--------
+
+XFORMS https://en.wikibooks.org/wiki/XForms/Checkbox
+XAML http://www.tutorialspoint.com/xaml/xaml_checkbox.htm
+
+date
+----
+
+XFORMS https://en.wikibooks.org/wiki/XForms/Selecting_a_Date
+XAML http://www.tutorialspoint.com/xaml/xaml_calender.htm
+
+input
+-----
+
+XFORMS https://en.wikibooks.org/wiki/XForms/Input
+XAML http://www.wpf-tutorial.com/basic-controls/the-textbox-control/
+
+password
+--------
+
+XFORMS https://en.wikibooks.org/wiki/XForms/Secret
+XAML http://www.tutorialspoint.com/xaml/xaml_passwordbox.htm
