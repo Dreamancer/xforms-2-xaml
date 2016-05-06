@@ -26,14 +26,30 @@
 				<!-- XAML: example date -->
 				<Calendar x:Name="calendar_name" SelectionMode="MultipleRange"/>  
 
+				<!-- XAML: example password -->
+				<PasswordBox x:Name="password_name"/>
+
 				<!-- XAML: example textbox -->
 				<TextBox x:Name="textbox_name"/>
 
-				<!-- XAML: example password -->
-				<PasswordBox x:Name="password_name"/> 
+				<!-- XAML: example read-only text -->
+				<TextBlock>some read-only text</TextBlock>
+
+				<!-- actual project code here -->
+
+				<!-- select form elements using namespace -->
+				<xsl:apply-templates select="//*[namespace-uri()="http://www.w3.org/2002/xforms"]"/>
 			</Grid> 
 
-		</Window> 
+		</Window>
+	</xsl:template>
+
+	<!-- template to apply to form elements: should determine what
+	type the element is and transform it to its equivalent in XAML -->
+	<xsl:template match="//*[namespace-uri()="http://www.w3.org/2002/xforms"]">
+
+		<!-- process element here -->
+
 	</xsl:template>
 
 </xsl:stylesheet>

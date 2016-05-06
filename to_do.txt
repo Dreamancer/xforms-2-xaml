@@ -1,7 +1,0 @@
-build Java app
-C# visualization of output file
-Java app: transformation using XSLT
-Java app: validation on input
-make sample XForms input file(s) - invalid
-make sample XForms input file(s) - valid
-XSLT transform of form elements listed in form_element_links
