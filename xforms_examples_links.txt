@@ -1,8 +1,0 @@
-XForms examples: links
-----------------------
-
-https://en.wikibooks.org/wiki/XForms/HelloWorld
-
-https://en.wikibooks.org/wiki/XForms/Checkbox
-
-https://en.wikibooks.org/wiki/XForms/Input_Example
