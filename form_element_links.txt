@@ -11,7 +11,8 @@ checkbox
 --------
 
 XFORMS https://en.wikibooks.org/wiki/XForms/Checkbox
-XAML http://www.tutorialspoint.com/xaml/xaml_checkbox.htm
+XAML http://www.tutorialspoint.com/xaml/xaml_checkbox.htm 
+XAML http://www.wpf-tutorial.com/basic-controls/the-checkbox-control/
 
 date
 ----
@@ -30,3 +31,22 @@ textbox
 
 XFORMS https://en.wikibooks.org/wiki/XForms/Input
 XAML http://www.wpf-tutorial.com/basic-controls/the-textbox-control/
+
+textarea
+--------
+XFORMS https://en.wikibooks.org/wiki/XForms/Textarea
+XAML http://www.wpf-tutorial.com/basic-controls/the-textblock-control/
+
+select multiple
+---------------
+XFORMS https://en.wikibooks.org/wiki/XForms/Select
+XAML http://www.tutorialspoint.com/xaml/xaml_checkbox.htm  
+XAML http://www.wpf-tutorial.com/basic-controls/the-checkbox-control/
+XAML http://www.wpf-tutorial.com/list-controls/listbox-control/ (or a listbox with multiple selections enabled)
+
+select one
+----------
+XFORMS https://en.wikibooks.org/wiki/XForms/Select1
+XAML http://www.wpf-tutorial.com/basic-controls/the-radiobutton-control/
+XAML http://www.wpf-tutorial.com/list-controls/listbox-control/
+XAML http://www.wpf-tutorial.com/list-controls/combobox-control/
