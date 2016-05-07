@@ -51,7 +51,14 @@
 				<!-- actual project code here -->
 
 				<!-- select form elements using namespace -->
-				<xsl:apply-templates select="//*[namespace-uri()= $xf-namespace-uri]"/>
+				<xsl:apply-templates select="//*[namespace-uri()= $xf-namespace-uri
+                                                            and (local-name()='input'
+                                                            or local-name()='secret'
+                                                            or local-name()='textarea'
+                                                            or local-name()='output'
+                                                            or local-name()='select'
+                                                            or local-name()='select1'
+                                                            or local-name()='trigger')]"/>
 			</WrapPanel>
 
 		</Window>
