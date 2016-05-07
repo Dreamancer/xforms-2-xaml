@@ -8,14 +8,27 @@
 		Purpose of transformation follows.
 -->
 
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-	<xsl:output method="xml" encoding="utf-8" indent="yes" />
-
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                version="2.0">
+	<xsl:output method="xml" encoding="utf-8" indent="yes" omit-xml-declaration="yes" />
+        
+        
+        <!-- XForms namespace uri-->
+        <xsl:variable name="xf-namespace-uri">http://www.w3.org/2002/xforms</xsl:variable>
+        <xsl:variable name="xaml-namespace-uri">http://schemas.microsoft.com/winfx/2006/xaml/presentation</xsl:variable>
 	<xsl:template match="/">
-		<Window x:Class="Resources.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="MainWindow" Height="400" Width="600"> 
+            <!-- x:Class="Resources.MainWindow" keeping this here just in case. -->
+		<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:local="clr-namespace:XAML_loader"
+                        mc:Ignorable="d"
+                        Title="MainWindow" Height="400" Width="600"> 
 
-			<Grid> 
-				<!-- examples of how to make form elements in XAML: delete later -->
+                    <WrapPanel Orientation="Vertical"> 
+			 <!-- examples of how to make form elements in XAML: delete later -->
 
 				<!-- XAML: example button -->
 				<Button x:Name="button_name" Content="button"/>
@@ -38,18 +51,36 @@
 				<!-- actual project code here -->
 
 				<!-- select form elements using namespace -->
-				<xsl:apply-templates select="//*[namespace-uri()="http://www.w3.org/2002/xforms"]"/>
-			</Grid> 
+				<xsl:apply-templates select="//*[namespace-uri()= $xf-namespace-uri]"/>
+			</WrapPanel>
 
 		</Window>
 	</xsl:template>
 
-	<!-- template to apply to form elements: should determine what
+	<!-- templates to apply to form elements: should determine what
 	type the element is and transform it to its equivalent in XAML -->
-	<xsl:template match="//*[namespace-uri()="http://www.w3.org/2002/xforms"]">
-
+        
+        <!-- template for input element -->
+	<xsl:template match="//*[local-name()='input' and namespace-uri()=$xf-namespace-uri]">
 		<!-- process element here -->
-
+            <xsl:element name="Label" namespace="{$xaml-namespace-uri}">
+                <xsl:attribute name="Content">
+                    <xsl:value-of select="./*[local-name()='label']" />
+                </xsl:attribute>   
+            </xsl:element>
+            <xsl:element name="TextBox" namespace="{$xaml-namespace-uri}">             
+                    <xsl:choose>
+                        <xsl:when test="./@ref != ''">
+                            <xsl:attribute name="x:Name">
+                            <xsl:value-of select="./@ref"/>
+                            </xsl:attribute>
+                        </xsl:when>
+                        <xsl:otherwise>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    
+                
+            </xsl:element>
 	</xsl:template>
 
 </xsl:stylesheet>
