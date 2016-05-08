@@ -3,7 +3,7 @@
 <!--
 	Document   : xforms-2-xaml.xsl
 	Created on : 29. dubna 2016, 0:50
-	Author     : Marek Cepcek, Riva Nathans Kepych, add your name here
+	Author     : Marek Cepcek, Riva Nathans Kepych, Jakub Horniak, add your name here
 	Description:
 		Purpose of transformation follows.
 -->
@@ -16,7 +16,9 @@
         
         <!-- XForms namespace uri-->
         <xsl:variable name="xf-namespace-uri">http://www.w3.org/2002/xforms</xsl:variable>
+        <!-- XAML namespace uri-->
         <xsl:variable name="xaml-namespace-uri">http://schemas.microsoft.com/winfx/2006/xaml/presentation</xsl:variable>
+        
 	<xsl:template match="/">
             <!-- x:Class="Resources.MainWindow" keeping this here just in case. -->
 		<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
@@ -50,7 +52,7 @@
 
 				<!-- actual project code here -->
 
-				<!-- select form elements using namespace -->
+				<!-- select form elements using namespace and element names-->
 				<xsl:apply-templates select="//*[namespace-uri()= $xf-namespace-uri
                                                             and (local-name()='input'
                                                             or local-name()='secret'
@@ -68,26 +70,30 @@
 	type the element is and transform it to its equivalent in XAML -->
         
         <!-- template for input element -->
-	<xsl:template match="//*[local-name()='input' and namespace-uri()=$xf-namespace-uri]">
-		<!-- process element here -->
+        <xsl:template match="//*[local-name()='input' and namespace-uri()=$xf-namespace-uri]">
+            <!-- process element here -->
+            <!--without the namespace attr. the output element has a xmlns="" attr.
+            which would cause an exception loading it in the xaml loader. -->
             <xsl:element name="Label" namespace="{$xaml-namespace-uri}">
                 <xsl:attribute name="Content">
                     <xsl:value-of select="./*[local-name()='label']" />
                 </xsl:attribute>   
             </xsl:element>
+            
             <xsl:element name="TextBox" namespace="{$xaml-namespace-uri}">             
-                    <xsl:choose>
-                        <xsl:when test="./@ref != ''">
-                            <xsl:attribute name="x:Name">
+                <xsl:choose>
+                    <!-- test if there is a nonempty ref attr in the xforms input element -->                     
+                    <xsl:when test="./ boolean(@ref) and (@ref != '')  ">
+                        <xsl:attribute name="x:Name">
                             <xsl:value-of select="./@ref"/>
-                            </xsl:attribute>
-                        </xsl:when>
-                        <xsl:otherwise>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                    
-                
+                        </xsl:attribute>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <!-- empty name attr. would cause an exception loading it in the xaml loader -->
+                    </xsl:otherwise>
+                </xsl:choose>                                    
             </xsl:element>
+            
 	</xsl:template>
-
+        
 </xsl:stylesheet>
