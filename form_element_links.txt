@@ -35,6 +35,11 @@ XAML http://www.wpf-tutorial.com/basic-controls/the-textbox-control/
 textarea
 --------
 XFORMS https://en.wikibooks.org/wiki/XForms/Textarea
+XAML http://www.wpf-tutorial.com/basic-controls/the-textbox-control/ 	(textblock with TextWrapping="Wrap" attr.)
+
+output
+------
+XFORMS https://en.wikibooks.org/wiki/XForms/Output_and_Links
 XAML http://www.wpf-tutorial.com/basic-controls/the-textblock-control/
 
 select multiple
