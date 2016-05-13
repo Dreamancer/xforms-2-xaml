@@ -3,7 +3,7 @@
 <!--
 	Document   : xforms-2-xaml.xsl
 	Created on : 29. dubna 2016, 0:50
-	Author     : Marek Cepcek, Riva Nathans Kepych, Jakub Horniak, add your name here
+	Author     : Marek Cepcek, Riva Nathans Kepych, Jakub Horniak, Lucia Sittova
 	Description:
 		Purpose of transformation follows.
 -->
