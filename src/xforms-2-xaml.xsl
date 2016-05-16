@@ -29,29 +29,7 @@
                         mc:Ignorable="d"
                         Title="MainWindow" Height="400" Width="600"> 
 
-                    <WrapPanel Orientation="Vertical"> 
-			 <!-- examples of how to make form elements in XAML: delete later -->
-
-				<!-- XAML: example button -->
-				<Button x:Name="button_name" Content="button"/>
-
-				<!-- XAML: example checkbox -->
-				<CheckBox x:Name="checkbox_name" Content="checkbox"/>
-
-				<!-- XAML: example date -->
-				<Calendar x:Name="calendar_name" SelectionMode="MultipleRange"/>  
-
-				<!-- XAML: example password -->
-				<PasswordBox x:Name="password_name"/>
-
-				<!-- XAML: example textbox -->
-				<TextBox x:Name="textbox_name"/>
-
-				<!-- XAML: example read-only text -->
-				<TextBlock>some read-only text</TextBlock>
-
-				<!-- actual project code here -->
-
+            <WrapPanel Orientation="Vertical"> 
 				<!-- select form elements using namespace and element names-->
 				<xsl:apply-templates select="//*[namespace-uri()= $xf-namespace-uri
                                                             and (local-name()='input'
@@ -69,31 +47,84 @@
 	<!-- templates to apply to form elements: should determine what
 	type the element is and transform it to its equivalent in XAML -->
         
-        <!-- template for input element -->
-        <xsl:template match="//*[local-name()='input' and namespace-uri()=$xf-namespace-uri]">
-            <!-- process element here -->
-            <!--without the namespace attr. the output element has a xmlns="" attr.
-            which would cause an exception loading it in the xaml loader. -->
-            <xsl:element name="Label" namespace="{$xaml-namespace-uri}">
-                <xsl:attribute name="Content">
-                    <xsl:value-of select="./*[local-name()='label']" />
-                </xsl:attribute>   
-            </xsl:element>
-            
-            <xsl:element name="TextBox" namespace="{$xaml-namespace-uri}">             
-                <xsl:choose>
-                    <!-- test if there is a nonempty ref attr in the xforms input element -->                     
-                    <xsl:when test="./ boolean(@ref) and (@ref != '')  ">
-                        <xsl:attribute name="x:Name">
-                            <xsl:value-of select="./@ref"/>
-                        </xsl:attribute>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <!-- empty name attr. would cause an exception loading it in the xaml loader -->
-                    </xsl:otherwise>
-                </xsl:choose>                                    
-            </xsl:element>
-            
+    <!-- template for input element -->
+    <xsl:template match="//*[local-name()='input' and namespace-uri()=$xf-namespace-uri]">
+        <!--without the namespace attr. the output element has a xmlns="" attr.
+        which would cause an exception loading it in the xaml loader. -->
+        <xsl:element name="Label" namespace="{$xaml-namespace-uri}">
+            <xsl:attribute name="Content">
+                <xsl:value-of select="./*[local-name()='label']" />
+            </xsl:attribute>   
+        </xsl:element>
+        
+        <xsl:element name="TextBox" namespace="{$xaml-namespace-uri}">             
+            <xsl:choose>
+                <!-- test if there is a nonempty ref attr in the xforms input element -->                     
+                <xsl:when test="./ boolean(@ref) and (@ref != '')">
+                    <xsl:attribute name="x:Name">
+                        <xsl:value-of select="./@ref"/>
+                    </xsl:attribute>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- empty name attr. would cause an exception loading it in the xaml loader -->
+                </xsl:otherwise>
+            </xsl:choose>                                    
+        </xsl:element>
 	</xsl:template>
+
+    <!-- template for secret element -->
+    <xsl:template match="//*[local-name()='secret' and namespace-uri()=$xf-namespace-uri]">
+        <!--without the namespace attr. the output element has a xmlns="" attr.
+        which would cause an exception loading it in the xaml loader. -->
+        <xsl:element name="Label" namespace="{$xaml-namespace-uri}">
+            <xsl:attribute name="Content">
+                <xsl:value-of select="./*[local-name()='label']" />
+            </xsl:attribute>   
+        </xsl:element>
+        
+        <xsl:element name="PasswordBox" namespace="{$xaml-namespace-uri}">             
+            <xsl:choose>
+                <!-- test if there is a nonempty ref attr in the xforms input element -->                     
+                <xsl:when test="./ boolean(@ref) and (@ref != '')">
+                    <xsl:attribute name="x:Name">
+                        <xsl:value-of select="./@ref"/>
+                    </xsl:attribute>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- empty name attr. would cause an exception loading it in the xaml loader -->
+                </xsl:otherwise>
+            </xsl:choose>                                    
+        </xsl:element>
+    </xsl:template>
+
+    <!-- template for trigger element -->
+    <xsl:template match="//*[local-name()='trigger' and namespace-uri()=$xf-namespace-uri]">
+        <!--without the namespace attr. the output element has a xmlns="" attr.
+        which would cause an exception loading it in the xaml loader. -->
+        <xsl:element name="Button" namespace="{$xaml-namespace-uri}">
+            <xsl:attribute name="Content">
+                <xsl:value-of select="./*[local-name()='label']" />
+            </xsl:attribute>            
+            <xsl:choose>
+                <!-- test if there is a nonempty ref attr in the xforms input element -->                     
+                <xsl:when test="./ boolean(@ref) and (@ref != '')">
+                    <xsl:attribute name="x:Name">
+                        <xsl:value-of select="./@ref"/>
+                    </xsl:attribute>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- empty name attr. would cause an exception loading it in the xaml loader -->
+                </xsl:otherwise>
+            </xsl:choose>                                    
+        </xsl:element>
+    </xsl:template>
+
+    <!-- TO DO template for textarea element -->
+
+    <!-- TO DO template for output element -->
+
+    <!-- TO DO template for select element -->
+    
+    <!-- TO DO template for select1 element -->
         
 </xsl:stylesheet>
