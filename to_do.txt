@@ -1,0 +1,9 @@
+> Java app: transformation using XSLT
+> Java app: validation of input file
+> make sample XForms input file(s) - invalid
+> make sample XForms input file(s) - valid
+> template for output element
+> template for textarea element
+> template for select element
+> template for select1 element
+> test transformation + output
