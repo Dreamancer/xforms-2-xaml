@@ -30,7 +30,7 @@
 
             <WrapPanel Orientation="Vertical"> 
 				<!-- select form elements using namespace and element names-->
-				<xsl:apply-templates select="//*[namespace-uri()= $xf-namespace-uri
+				<xsl:apply-templates select="//*[namespace-uri()=$xf-namespace-uri
                                                             and (local-name()='input'
                                                             or local-name()='textarea'
                                                             or local-name()='secret'
@@ -51,7 +51,7 @@
         which would cause an exception loading it in the xaml loader. -->
         <xsl:element name="Label" namespace="{$xaml-namespace-uri}">
             <xsl:attribute name="Content">
-                <xsl:value-of select="./*[local-name()='label']" />
+                <xsl:value-of select="./*[local-name()='label']"/>
             </xsl:attribute>   
         </xsl:element>
         
@@ -76,7 +76,7 @@
         which would cause an exception loading it in the xaml loader. -->
         <xsl:element name="Label" namespace="{$xaml-namespace-uri}">
             <xsl:attribute name="Content">
-                <xsl:value-of select="./*[local-name()='label']" />
+                <xsl:value-of select="./*[local-name()='label']"/>
             </xsl:attribute>
         </xsl:element>
         
@@ -103,7 +103,7 @@
         which would cause an exception loading it in the xaml loader. -->
         <xsl:element name="Label" namespace="{$xaml-namespace-uri}">
             <xsl:attribute name="Content">
-                <xsl:value-of select="./*[local-name()='label']" />
+                <xsl:value-of select="./*[local-name()='label']"/>
             </xsl:attribute>   
         </xsl:element>
         
@@ -128,7 +128,7 @@
         which would cause an exception loading it in the xaml loader. -->
         <xsl:element name="Button" namespace="{$xaml-namespace-uri}">
             <xsl:attribute name="Content">
-                <xsl:value-of select="./*[local-name()='label']" />
+                <xsl:value-of select="./*[local-name()='label']"/>
             </xsl:attribute>            
             <xsl:choose>
                 <!-- test if there is a nonempty ref attr in the xforms input element -->                     
@@ -145,6 +145,23 @@
     </xsl:template>
 
     <!-- TO DO template for select element -->
+    <xsl:template match="//*[local-name()='select' and namespace-uri()=$xf-namespace-uri]">
+        <!--without the namespace attr. the output element has a xmlns="" attr.
+        which would cause an exception loading it in the xaml loader. -->
+        <xsl:element name="Label" namespace="{$xaml-namespace-uri}">
+            <xsl:attribute name="Content">
+                <xsl:value-of select="./*[local-name()='label']"/>
+            </xsl:attribute>
+        </xsl:element>
+
+        <xsl:apply-templates select="./[local-name()='item' and namespace-uri()=$xf-namespace-uri]"/>
+    </xsl:template>
+
+    <xsl:template match="//*[local-name()='item' and namespace-uri()=$xf-namespace-uri]">
+        <xsl:element name="Checkbox" namespace="{$xaml-namespace-uri}">
+            <xsl:value-of select="./*[local-name()='label']"/>                         
+        </xsl:element>
+    </xsl:template>
     
     <!-- TO DO template for select1 element -->
         
