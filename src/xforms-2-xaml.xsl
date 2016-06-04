@@ -70,7 +70,7 @@
         </xsl:element>
 	</xsl:template>
 
-    <!-- TO DO template for textarea element -->
+    <!-- template for textarea element -->
     <xsl:template match="//*[local-name()='textarea' and namespace-uri()=$xf-namespace-uri]">
         <!--without the namespace attr. the output element has a xmlns="" attr.
         which would cause an exception loading it in the xaml loader. -->
@@ -144,7 +144,7 @@
         </xsl:element>
     </xsl:template>
 
-    <!-- TO DO template for select element -->
+    <!-- template for select element -->
     <xsl:template match="//*[local-name()='select' and namespace-uri()=$xf-namespace-uri]">
         <!--without the namespace attr. the output element has a xmlns="" attr.
         which would cause an exception loading it in the xaml loader. -->
