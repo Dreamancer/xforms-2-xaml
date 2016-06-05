@@ -214,7 +214,6 @@
 
 		<!-- Jakub: There was a redundant XAML label being generated here so I removed it.
         The xforms select doesn't have a "general" label, only labels for its items-->
-
 		<xsl:apply-templates select="./*[local-name()='item' and namespace-uri()=$xf-namespace-uri]"/>
 	</xsl:template>
 

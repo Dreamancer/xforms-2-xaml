@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<společnost
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../company.xsd">
+
+    
+    <!-- did is required, a nonempty string unique for all divizes,
+      (can be used as a key for divizes)
+      mandatory element - there must be always at least one divize in the company
+    -->
+    <divize did="production_zlin">
+        <!-- name is optional and contains a string -->
+        <jméno>Production factory Zlín</jméno>
+        <!-- vedení is optional and contains always a osoba if present -->
+        <vedení>
+            <!-- mandatory element osoba, pid is required, unique (positive) integer 
+            (can be used as a key for osobas);
+            the name, surname, plat elts. can be ordered in any order
+            -->
+            <osoba pid="1"> 	
+                <!-- name is required, non-empty string -->	 
+                <jméno>Pavel</jméno>	 
+                <!-- surname is required, non-empty string -->
+                <příjmení>Novák</příjmení> 
+                <!-- plat is required, positive number 
+	             with 2 decimal places precision, e.g. 10000.50 -->
+                <plat>20000.00</plat> 
+                <!-- poznámka optional element, repeatable, contains any string -->  
+                <poznámka>Poznámka</poznámka>   
+            </osoba>            
+        </vedení>
+        <zaměstnanci>
+            <zaměstnanec kategorie="THP" eid="1">
+                <jméno>Jan Jan</jméno>
+                <plat>20000.00</plat>
+            </zaměstnanec>
+        </zaměstnanci>
+    </divize>
+</společnost>

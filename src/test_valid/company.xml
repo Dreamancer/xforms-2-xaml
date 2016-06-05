@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<společnost 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../company.xsd">
+    
+    <!-- did is required, a nonempty string unique for all divisions 
+     mandatory element
+    (can be used as a key for divisions) -->
+    <divize did="production_zlin">
+        <!-- name is optional and contains any string -->
+        <jméno>Production factory Zlín</jméno>
+        <!-- head is optional and contains always a person if present -->
+        <vedení>
+            <!-- pid is required, unique (positive) integer 
+            (can be used as a key for persons);
+            the name, surname, salary elts. can be ordered in any order -->
+            <osoba pid="1"> 	
+                <!-- name is required, non-empty string -->	 
+                <jméno>Pavel</jméno>	 
+                <!-- surname is required, non-empty string -->
+                <příjmení>Novák</příjmení> 
+                <!-- salary is required, positive number 
+	             with 2 decimal places precision, e.g. 10000.50 -->
+                <plat>200000.00</plat> 
+                <!-- note optional element, repeatable, contains any string -->  
+                <poznámka>Poznámka</poznámka>   
+            </osoba>            
+        </vedení>
+        <zaměstnanci><!-- optional element, employees of the division. Must contain one or more 
+                        elements employee-->
+            <zaměstnanec kategorie="dělník" eid="1"> 
+                                    <!-- Division employee
+                                      kategorie - employee category, one of dělník, dodavatel, návrhář, thp
+                                      eid - unique employee id, mandatory attribute, numeric value
+                                    -->
+                <jméno>Jan Novy</jméno> <!-- name of the employee, two string of letters and whitespaces 
+                                           begining with uppercase, 
+                                            -->
+                <plat>10000.00</plat> <!-- Employee salary
+                                               positive number with 2 decimal places precision -->
+            </zaměstnanec>
+            <zaměstnanec kategorie="dodavatel" eid="2"> <!-- employee of type contractor -->
+                <společnost>Prvni Dodavatel</společnost> <!-- Contractor's company. Any string. -->
+                <odměna>10000.00</odměna>     <!-- Contractor fee per contract, positive number, with 2 decimal -->
+                <dph>ano</dph>          <!-- Is the contractor a VAT payer (ano/ne) -->
+            </zaměstnanec>
+        </zaměstnanci>
+    </divize>
+    <divize did="development_brno">
+        <vedení>
+            <osoba pid="2">
+                <jméno>Jan</jméno>
+                <příjmení>Novak</příjmení>
+                <plat>200000.00</plat>
+            </osoba>
+        </vedení>
+        <zaměstnanci>
+            <zaměstnanec kategorie="návrhář" eid="3">
+                <jméno>Pavel Kutil</jméno>
+                <plat>50000.00</plat>
+            </zaměstnanec>
+            <zaměstnanec kategorie="dělník" eid="4">
+                <jméno>Tomas Pracant</jméno>
+                <plat>35000.00</plat>
+            </zaměstnanec>
+        </zaměstnanci>
+    </divize>
+</společnost>
