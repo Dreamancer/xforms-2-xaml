@@ -1,5 +1,3 @@
-// adapted from http://www.tutorialspoint.com/xsd/xsd_validation.htm
-
 import java.io.File;
 import java.io.IOException;
 
