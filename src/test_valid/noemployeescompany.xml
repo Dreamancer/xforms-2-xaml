@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<společnost
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../company.xsd">
+
+    
+    <divize did="production_zlin">
+        <jméno>Production factory Zlín</jméno>
+        <vedení>
+            <osoba pid="1"> 	
+                <jméno>Pavel</jméno>	 
+                <příjmení>Novák</příjmení> 
+                <plat>20000.00</plat> 
+                <poznámka>Poznámka</poznámka>   
+            </osoba>            
+        </vedení>
+    </divize>
+</společnost>

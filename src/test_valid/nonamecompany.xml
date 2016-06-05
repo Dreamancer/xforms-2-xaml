@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<společnost
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../company.xsd">
+
+    
+    <!-- did is required, a nonempty string unique for all divisions,
+      (can be used as a key for divisions)
+      mandatory element - there must be always at least one division in the company
+    -->
+    <divize did="production_zlin">
+        <!-- head is optional and contains always a person if present -->
+        <vedení>
+            <!-- mandatory element person, pid is required, unique (positive) integer 
+            (can be used as a key for persons);
+            the name, surname, salary elts. can be ordered in any order
+            -->
+            <osoba pid="1"> 	
+                <!-- name is required, non-empty string -->	 
+                <jméno>Pavel</jméno>	 
+                <!-- surname is required, non-empty string -->
+                <příjmení>Novák</příjmení> 
+                <!-- salary is required, positive number 
+	             with 2 decimal places precision, e.g. 10000.50 -->
+                <plat>20000.00</plat> 
+                <!-- note optional element, repeatable, contains any string -->  
+                <poznámka>Poznámka</poznámka>   
+            </osoba>            
+        </vedení>
+        <zaměstnanci>
+            <zaměstnanec kategorie="návrhář" eid="1">
+                <jméno>Tomas Bastlir</jméno>
+                <plat>50000.00</plat>
+            </zaměstnanec>
+        </zaměstnanci>
+    </divize>
+</společnost>

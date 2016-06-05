@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<společnost
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../company.xsd">
+    <divize did="production_zlin">
+        <zaměstnanci>
+            <zaměstnanec kategorie="dělník" eid="2"> 
+                <plat>10000.00</plat>
+            </zaměstnanec>
+        </zaměstnanci>
+    </divize>
+</společnost>

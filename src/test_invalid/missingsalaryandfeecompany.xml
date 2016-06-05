@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<společnost
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../company.xsd">
+    <divize did="production_zlin">
+        <zaměstnanci><!-- optional element, products of the division. Must contain one or more 
+                    elements product-->
+            <zaměstnanec kategorie="dělník" eid="2"> <!-- Divisioin service -->
+                <jméno>Jana Novakova</jméno>
+            </zaměstnanec>
+        </zaměstnanci>
+    </divize>
+</společnost>

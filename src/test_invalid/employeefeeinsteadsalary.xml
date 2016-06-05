@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<společnost
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../company.xsd">
+
+    
+    <!-- did is required, a nonempty string unique for all divizes,
+      (can be used as a key for divizes)
+      mandatory element - there must be always at least one divize in the společnost
+    -->
+    <divize did="production_zlin">
+        <jméno>Production factory Zlín</jméno>
+        
+        <zaměstnanci>
+            <zaměstnanec kategorie="návrhář" eid="1"> 
+                <jméno>Jan Zizka</jméno> 
+                <odměna>10000.00</odměna>
+            </zaměstnanec>
+        </zaměstnanci>
+    </divize>
+</společnost>
