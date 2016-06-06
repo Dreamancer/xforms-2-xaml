@@ -6,6 +6,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.xml.XMLConstants;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
@@ -68,6 +73,11 @@ public class XFormsValidatorUI extends javax.swing.JFrame {
         });
 
         jButton3.setText(bundle.getString("XFormsValidatorUI.jButton3.text")); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         MessageArea.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MessageArea.setText(bundle.getString("XFormsValidatorUI.MessageArea.text")); // NOI18N
@@ -140,6 +150,16 @@ public class XFormsValidatorUI extends javax.swing.JFrame {
        TextArea.setText(validationResult);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {   
+            transformToXAML(fileName);
+            
+        } catch (TransformerException ex) {
+            validationResult = ex.getMessage();
+        }
+        TextArea.setText(validationResult);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -187,6 +207,18 @@ public class XFormsValidatorUI extends javax.swing.JFrame {
             return false;
         }
         return true;
+    }
+    public static void transformToXAML(String fileName) 
+            throws TransformerConfigurationException, TransformerException {
+        
+        TransformerFactory tf = TransformerFactory.newInstance();
+        
+        Transformer xsltProc = tf.newTransformer(
+                new StreamSource(new File("xforms-2-xaml.xsl")));
+        
+        xsltProc.transform(
+                new StreamSource(fileName), 
+                new StreamResult(new File("result.xaml")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
