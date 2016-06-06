@@ -1,9 +1,8 @@
 <html
-xmlns="http://www.w3.org/1999/xhtml"
-xmlns:xf="http://www.w3.org/2002/xforms"
->
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xf="http://www.w3.org/2002/xforms">
    <head>
-      <title>XForms Radio Button Using xf:Select appearance="full"</title>
+      <title>XForms Select Many</title>
       <xf:model>
          <xf:instance xmlns="">
             <data>
@@ -13,29 +12,30 @@ xmlns:xf="http://www.w3.org/2002/xforms"
       </xf:model>
    </head>
    <body>
-       <p>XForms Radio Button Using Select appearance="full"</p>
-        <xf:select ref="MyCode" selection="closed" appearance="full" >  
-            <xf:item>
-                <xf:label>Red</xf:label>
-                <xf:value>red</xf:value> 
-            </xf:item>
-            <xf:item>
-                <xf:label>Orange</xf:label>
-                <xf:value>orange</xf:value>
-            </xf:item>
-            <xf:item>
-                <xf:label>Yellow</xf:label>
-                <xf:value>yellow</xf:value>
-            </xf:item>
-            <xf:item>
-                <xf:label>Green</xf:label>
-                <xf:value>green</xf:value>
-            </xf:item>
-            <xf:item>
-                <xf:label>Blue</xf:label>
-                <xf:value>blue</xf:value>
-            </xf:item>
-       </xf:select>
-       Output: <xf:output ref="/data/MyCode"/>
+      <p>XForms Select Many</p>
+      <xf:select ref="MyCode" selection="closed" appearance="full">
+          <xf:label>list label</xf:label>
+          <xf:item>
+              <xf:label>Red</xf:label>
+              <xf:value>red</xf:value> 
+          </xf:item>
+          <xf:item>
+              <xf:label>Orange</xf:label>
+              <xf:value>orange</xf:value>
+          </xf:item>
+          <xf:item>
+              <xf:label>Yellow</xf:label>
+              <xf:value>yellow</xf:value>
+          </xf:item>
+          <xf:item>
+              <xf:label>Green</xf:label>
+              <xf:value>green</xf:value>
+          </xf:item>
+          <xf:item>
+              <xf:label>Blue</xf:label>
+              <xf:value>blue</xf:value>
+          </xf:item>
+      </xf:select>
+      Output: <xf:output ref="/data/MyCode"/>
    </body>
 </html>

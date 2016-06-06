@@ -6,28 +6,19 @@
       <xf:model>
          <xf:instance xmlns="">
             <data>
-               <guru/>
-               <PersonSurName/>
+               <PersonFirstName/>
+               <PersonLastName/>
             </data>
          </xf:instance>
       </xf:model>
    </head>
    <body>
       <p>Enter your first name, and last name.</p>
-         <xf:input ref="PersonGivenName" incremental="true">
-            <xf:label>Input First-Name:</xf:label>
-            <xf:hint>Also known as given name.</xf:hint>
+         <xf:input ref="PersonFirstName" incremental="true">
+            <xf:label>enter first name:</xf:label>
          </xf:input>
-         <br/>
-         <xf:input ref="PersonSurName" incremental="true">
-            <xf:label>Input Last Name:</xf:label>
-            <xf:hint>Also known as sur name or family name.</xf:hint>
+         <xf:input ref="PersonLastName" incremental="true">
+            <xf:label>enter last name:</xf:label>
          </xf:input>
-         <br/>
-         <br/>
-         Output First Name: <b><xf:output ref="PersonGivenName"/></b>
-         <br/>
-         Output Last Name: <b><xf:output ref="PersonSurName"/></b>
-      <p>Note that as you type the model output will be updated.</p>
    </body>
 </html>
