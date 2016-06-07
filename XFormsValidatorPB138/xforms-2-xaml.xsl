@@ -75,12 +75,12 @@
 				<xsl:element name="Calendar" namespace="{$xaml-namespace-uri}">
 					<xsl:choose>
 						<!-- test if there is a nonempty ref attr in the xforms input element -->
-						<xsl:when test="./ boolean(@ref) and (@ref != '')">
+						<xsl:when test="boolean(@ref) and (@ref != '')">
 							<xsl:attribute name="x:Name">
 								<xsl:value-of select="./@ref"/>
 							</xsl:attribute>
 						</xsl:when>
-						<xsl:when test="./ boolean(@bind) and (@bind != '')">
+						<xsl:when test="boolean(@bind) and (@bind != '')">
 							<xsl:attribute name="x:Name">
 								<xsl:value-of select="./@bind"/>
 							</xsl:attribute>
@@ -99,12 +99,12 @@
 				<xsl:element name="CheckBox" namespace="{$xaml-namespace-uri}">
 					<xsl:choose>
 						<!-- test if there is a nonempty ref attr in the xforms input element -->
-						<xsl:when test="./ boolean(@ref) and (@ref != '')">
+						<xsl:when test="boolean(@ref) and (@ref != '')">
 							<xsl:attribute name="x:Name">
 								<xsl:value-of select="./@ref"/>
 							</xsl:attribute>
 						</xsl:when>
-						<xsl:when test="./ boolean(@bind) and (@bind != '')">
+						<xsl:when test="boolean(@bind) and (@bind != '')">
 							<xsl:attribute name="x:Name">
 								<xsl:value-of select="./@bind"/>
 							</xsl:attribute>
@@ -120,12 +120,12 @@
 				<xsl:element name="TextBox" namespace="{$xaml-namespace-uri}">
 					<xsl:choose>
 						<!-- test if there is a nonempty ref attr in the xforms input element -->
-						<xsl:when test="./ boolean(@ref) and (@ref != '')">
+						<xsl:when test="boolean(@ref) and (@ref != '')">
 							<xsl:attribute name="x:Name">
 								<xsl:value-of select="./@ref"/>
 							</xsl:attribute>
 						</xsl:when>
-						<xsl:when test="./ boolean(@bind) and (@bind != '')">
+						<xsl:when test="boolean(@bind) and (@bind != '')">
 							<xsl:attribute name="x:Name">
 								<xsl:value-of select="./@bind"/>
 							</xsl:attribute>
@@ -141,7 +141,7 @@
 	</xsl:template>
 
 	<xsl:template match="//*[local-name()='output' and namespace-uri()=$xf-namespace-uri]">
-		<xsl:if test="./ boolean(@value)">
+		<xsl:if test="boolean(@value)">
 			<xsl:element name="TextBlock" namespace="{$xaml-namespace-uri}">
 			<!-- Jakub: the textblock will now contain the string from @value , but that is an XPath expression 
 				so the output string will also be an XPath and not it's evaluation (which I'm not sure is possible)-->
@@ -161,7 +161,7 @@
 
 			<!-- test if there is a nonempty ref attr in the xforms input element
 			 empty name attr. would cause an exception loading it in the xaml loader -->
-			<xsl:if test="./ boolean(@ref) and (@ref != '')">
+			<xsl:if test="boolean(@ref) and (@ref != '')">
 				<xsl:attribute name="x:Name">
 					<xsl:value-of select="./@ref"/>
 				</xsl:attribute>
@@ -181,7 +181,7 @@
 		<xsl:element name="PasswordBox" namespace="{$xaml-namespace-uri}">
 			<!-- test if there is a nonempty ref attr in the xforms input element
 			 empty name attr. would cause an exception loading it in the xaml loader -->
-			<xsl:if test="./ boolean(@ref) and (@ref != '')">
+			<xsl:if test="boolean(@ref) and (@ref != '')">
 				<xsl:attribute name="x:Name">
 					<xsl:value-of select="./@ref"/>
 				</xsl:attribute>
@@ -199,7 +199,7 @@
 			</xsl:attribute>
 			<!-- test if there is a nonempty ref attr in the xforms input element
 			 empty name attr. would cause an exception loading it in the xaml loader -->
-			<xsl:if test="./ boolean(@ref) and (@ref != '')">
+			<xsl:if test="boolean(@ref) and (@ref != '')">
 				<xsl:attribute name="x:Name">
 					<xsl:value-of select="./@ref"/>
 				</xsl:attribute>
