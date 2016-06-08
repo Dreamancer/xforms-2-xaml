@@ -26,6 +26,7 @@ public class XFormsValidatorUI extends javax.swing.JFrame {
     public File file;
     public static String fileName;
     public static String validationResult;
+    //public static String myXsdSchema = "C:\Users\Sittova\Documents\GitHub\xforms-2-xaml\XFormsValidatorPB138\src\my\xformsvalidatorXForms-11-Schema.xsd";
     
     /**
      * Creates new form XFormsValidatorUI
@@ -138,7 +139,7 @@ public class XFormsValidatorUI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        try {
-            boolean result = validateXMLSchema("XForms-11-Schema.xsd", file.getName());
+            boolean result = validateXMLSchema("XForms-11-Schema.xsd", file.getPath());
             if (result)
             {
                 validationResult = "OK";
