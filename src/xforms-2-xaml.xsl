@@ -75,12 +75,12 @@
 				<xsl:element name="Calendar" namespace="{$xaml-namespace-uri}">
 					<xsl:choose>
 						<!-- test if there is a nonempty ref attr in the xforms input element -->
-						<xsl:when test="./ boolean(@ref) and (@ref != '')">
+						<xsl:when test="boolean(@ref) and (@ref != '')">
 							<xsl:attribute name="x:Name">
 								<xsl:value-of select="./@ref"/>
 							</xsl:attribute>
 						</xsl:when>
-						<xsl:when test="./ boolean(@bind) and (@bind != '')">
+						<xsl:when test="boolean(@bind) and (@bind != '')">
 							<xsl:attribute name="x:Name">
 								<xsl:value-of select="./@bind"/>
 							</xsl:attribute>
@@ -99,12 +99,12 @@
 				<xsl:element name="CheckBox" namespace="{$xaml-namespace-uri}">
 					<xsl:choose>
 						<!-- test if there is a nonempty ref attr in the xforms input element -->
-						<xsl:when test="./ boolean(@ref) and (@ref != '')">
+						<xsl:when test="boolean(@ref) and (@ref != '')">
 							<xsl:attribute name="x:Name">
 								<xsl:value-of select="./@ref"/>
 							</xsl:attribute>
 						</xsl:when>
-						<xsl:when test="./ boolean(@bind) and (@bind != '')">
+						<xsl:when test="boolean(@bind) and (@bind != '')">
 							<xsl:attribute name="x:Name">
 								<xsl:value-of select="./@bind"/>
 							</xsl:attribute>
@@ -120,12 +120,12 @@
 				<xsl:element name="TextBox" namespace="{$xaml-namespace-uri}">
 					<xsl:choose>
 						<!-- test if there is a nonempty ref attr in the xforms input element -->
-						<xsl:when test="./ boolean(@ref) and (@ref != '')">
+						<xsl:when test="boolean(@ref) and (@ref != '')">
 							<xsl:attribute name="x:Name">
 								<xsl:value-of select="./@ref"/>
 							</xsl:attribute>
 						</xsl:when>
-						<xsl:when test="./ boolean(@bind) and (@bind != '')">
+						<xsl:when test="boolean(@bind) and (@bind != '')">
 							<xsl:attribute name="x:Name">
 								<xsl:value-of select="./@bind"/>
 							</xsl:attribute>
@@ -141,11 +141,10 @@
 	</xsl:template>
 
 	<xsl:template match="//*[local-name()='output' and namespace-uri()=$xf-namespace-uri]">
-		<xsl:if test="./ boolean(@value)">
+		<xsl:if test="boolean(@value)">
 			<xsl:element name="TextBlock" namespace="{$xaml-namespace-uri}">
-			<!-- Jakub: the textblock will now contain the string from @value , but that is an XPath expression 
-				so the output string will also be an XPath and not it's evaluation (which I'm not sure is possible)-->
-				<xsl:value-of select="./@value"/>
+			<!-- value of the output element is determined programmatically in xforms, but that can't be achieved in pure xaml -->
+				<xsl:comment>Content of this control should be generated in code behind. Hint: <xsl:value-of select="./@value"/></xsl:comment>
 			</xsl:element>
 		</xsl:if>
 
@@ -161,7 +160,7 @@
 
 			<!-- test if there is a nonempty ref attr in the xforms input element
 			 empty name attr. would cause an exception loading it in the xaml loader -->
-			<xsl:if test="./ boolean(@ref) and (@ref != '')">
+			<xsl:if test="boolean(@ref) and (@ref != '')">
 				<xsl:attribute name="x:Name">
 					<xsl:value-of select="./@ref"/>
 				</xsl:attribute>
@@ -169,6 +168,9 @@
 
 			<xsl:attribute name="AcceptsReturn">True</xsl:attribute>
 			<xsl:attribute name="TextWrapping">Wrap</xsl:attribute>
+			<xsl:attribute name="MinHeight">100</xsl:attribute>
+			<xsl:attribute name="MinWidth">200</xsl:attribute>
+
 		</xsl:element>
 	</xsl:template>
 
@@ -181,7 +183,7 @@
 		<xsl:element name="PasswordBox" namespace="{$xaml-namespace-uri}">
 			<!-- test if there is a nonempty ref attr in the xforms input element
 			 empty name attr. would cause an exception loading it in the xaml loader -->
-			<xsl:if test="./ boolean(@ref) and (@ref != '')">
+			<xsl:if test="boolean(@ref) and (@ref != '')">
 				<xsl:attribute name="x:Name">
 					<xsl:value-of select="./@ref"/>
 				</xsl:attribute>
@@ -199,7 +201,7 @@
 			</xsl:attribute>
 			<!-- test if there is a nonempty ref attr in the xforms input element
 			 empty name attr. would cause an exception loading it in the xaml loader -->
-			<xsl:if test="./ boolean(@ref) and (@ref != '')">
+			<xsl:if test="boolean(@ref) and (@ref != '')">
 				<xsl:attribute name="x:Name">
 					<xsl:value-of select="./@ref"/>
 				</xsl:attribute>
@@ -207,22 +209,90 @@
 		</xsl:element>
 	</xsl:template>
 
-	<!-- TO DO template for select element -->
 	<xsl:template match="//*[local-name()='select' and namespace-uri()=$xf-namespace-uri]">
-		<!--without the namespace attr. the output element has a xmlns="" attr.
-        which would cause an exception loading it in the xaml loader. -->
-
 		<xsl:apply-templates select="./*[local-name()='label' and namespace-uri()=$xf-namespace-uri]"/>
-
-		<xsl:apply-templates select="./*[local-name()='item' and namespace-uri()=$xf-namespace-uri]"/>
+		<xsl:choose>
+			<xsl:when test="./@appearance = 'full'">
+				<xsl:apply-templates select="./*[local-name()='item' and namespace-uri()=$xf-namespace-uri]" mode="checkbox"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:element name="ListBox" namespace="{$xaml-namespace-uri}">
+					<xsl:attribute name="SelectionMode">Multiple</xsl:attribute>
+					<!-- test if there is a nonempty ref attr in the xforms input element
+			 empty name attr. would cause an exception loading it in the xaml loader -->
+					<xsl:if test="boolean(@ref) and (@ref != '')">
+						<xsl:attribute name="x:Name">
+							<xsl:value-of select="./@ref"/>
+						</xsl:attribute>
+					</xsl:if>
+					<xsl:apply-templates select="./*[local-name()='item' and namespace-uri()=$xf-namespace-uri]" mode="list"/>
+				</xsl:element>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 
-	<xsl:template match="//*[local-name()='item' and namespace-uri()=$xf-namespace-uri]">
-		<xsl:element name="Checkbox" namespace="{$xaml-namespace-uri}">
+	<xsl:template match="//*[local-name()='select1' and namespace-uri()=$xf-namespace-uri]">
+
+		<xsl:apply-templates select="./*[local-name()='label' and namespace-uri()=$xf-namespace-uri]"/>
+		<xsl:choose>
+			<xsl:when test="./@appearance = 'full'">
+				<xsl:apply-templates select="./*[local-name()='item' and namespace-uri()=$xf-namespace-uri]" mode="radio">
+					<xsl:with-param name="group" select="./@ref" />
+				</xsl:apply-templates>
+			</xsl:when>
+			<xsl:when test="./@appearance = 'compact'">
+				<xsl:element name="ListBox" namespace="{$xaml-namespace-uri}">
+					<!-- test if there is a nonempty ref attr in the xforms input element
+			 empty name attr. would cause an exception loading it in the xaml loader -->
+					<xsl:if test="boolean(@ref) and (@ref != '')">
+						<xsl:attribute name="x:Name">
+							<xsl:value-of select="./@ref"/>
+						</xsl:attribute>
+					</xsl:if>
+					<xsl:apply-templates select="./*[local-name()='item' and namespace-uri()=$xf-namespace-uri]" mode="list"/>
+				</xsl:element>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:element name="ComboBox" namespace="{$xaml-namespace-uri}">
+					<!-- test if there is a nonempty ref attr in the xforms input element
+			 empty name attr. would cause an exception loading it in the xaml loader -->
+					<xsl:if test="boolean(@ref) and (@ref != '')">
+						<xsl:attribute name="x:Name">
+							<xsl:value-of select="./@ref"/>
+						</xsl:attribute>
+					</xsl:if>
+					<xsl:apply-templates select="./*[local-name()='item' and namespace-uri()=$xf-namespace-uri]" mode="combo"/>
+				</xsl:element>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<xsl:template match="//*[local-name()='item' and namespace-uri()=$xf-namespace-uri]" mode="checkbox">
+		<xsl:element name="CheckBox" namespace="{$xaml-namespace-uri}">
 			<xsl:value-of select="./*[local-name()='label']"/>
 		</xsl:element>
 	</xsl:template>
 
-	<!-- TO DO template for select1 element -->
+	<xsl:template match="//*[local-name()='item' and namespace-uri()=$xf-namespace-uri]" mode="list">
+		<xsl:element name="TextBlock" namespace="{$xaml-namespace-uri}">
+			<xsl:value-of select="./*[local-name()='label']"/>
+		</xsl:element>
+	</xsl:template>
+
+	<xsl:template match="//*[local-name()='item' and namespace-uri()=$xf-namespace-uri]" mode="combo">
+		<xsl:element name="ComboBoxItem" namespace="{$xaml-namespace-uri}">
+			<xsl:value-of select="./*[local-name()='label']"/>
+		</xsl:element>
+	</xsl:template>
+
+	<xsl:template match="//*[local-name()='item' and namespace-uri()=$xf-namespace-uri]" mode="radio">
+		<xsl:param name="group" />
+		<xsl:element name="RadioButton" namespace="{$xaml-namespace-uri}">
+			<xsl:attribute name="GroupName">
+				<xsl:value-of select="$group"/>
+			</xsl:attribute>
+			<xsl:value-of select="./*[local-name()='label']"/>
+		</xsl:element>
+	</xsl:template>
 
 </xsl:stylesheet>
