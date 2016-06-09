@@ -23,10 +23,14 @@ import org.xml.sax.SAXException;
  */
 public class XFormsValidatorUI extends javax.swing.JFrame {
 
+    //Represents a file loaded by the user.
     public File file;
-    public static String fileName;
+    //Stores a path to the loaded file.
+    public static String filePath;
+    //Used for storing the result of the validation, will be displayed in a message area of the UI.
     public static String validationResult;
-    //public static String myXsdSchema = "C:\Users\Sittova\Documents\GitHub\xforms-2-xaml\XFormsValidatorPB138\src\my\xformsvalidatorXForms-11-Schema.xsd";
+    //Message to be displayed when the validation has been successful.
+    public static final String validationSuccessful = "The loaded file conforms to the XForms schema.";
     
     /**
      * Creates new form XFormsValidatorUI
@@ -44,7 +48,7 @@ public class XFormsValidatorUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        fileNameInTextBox = new javax.swing.JTextField();
+        filePathInTextBox = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -57,7 +61,7 @@ public class XFormsValidatorUI extends javax.swing.JFrame {
         setTitle(bundle.getString("windowTitle")); // NOI18N
         setResizable(false);
 
-        fileNameInTextBox.setText(bundle.getString("XFormsValidatorUI.fileNameInTextBox.text")); // NOI18N
+        filePathInTextBox.setText(bundle.getString("XFormsValidatorUI.filePathInTextBox.text")); // NOI18N
 
         jButton1.setText(bundle.getString("XFormsValidatorUI.jButton1.text")); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +102,7 @@ public class XFormsValidatorUI extends javax.swing.JFrame {
                     .addComponent(MessageArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fileNameInTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
+                    .addComponent(filePathInTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(159, 159, 159)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -114,7 +118,7 @@ public class XFormsValidatorUI extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(fileNameInTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(filePathInTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -130,34 +134,44 @@ public class XFormsValidatorUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //JFileChooser provides a simple mechanism for the user to choose a file.
         JFileChooser chooser = new JFileChooser();
+        //Pops up an "Open File" file chooser dialog. 
         chooser.showOpenDialog(null);
+        //Return the selected file and store it in a File variable.
         file = chooser.getSelectedFile();
-        fileName = file.getAbsolutePath();
-        fileNameInTextBox.setText(fileName);
+        //We want to display the complete path to the file in the UI.
+        filePath = file.getAbsolutePath();
+        //Set a text in the message area to read the filepath.
+        filePathInTextBox.setText(filePath);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        try {
+           //Validate the loaded file against an XForms schema and mark the result in a variable.
             boolean result = validateXMLSchema("XForms-11-Schema.xsd", file.getPath());
+           //Store a message about success if it's occurred.
             if (result)
             {
-                validationResult = "OK";
+                validationResult = validationSuccessful;
             }
         } catch (SAXException ex) {
+            //Finds or creates a logger for a named subsystem and logs a message.
             Logger.getLogger(XFormsValidatorUI.class.getName()).log(Level.SEVERE, null, ex);
-            validationResult = "NOK";
         }
+       //Set a text displayed in the message area of the UI.
        TextArea.setText(validationResult);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try {   
-            transformToXAML(fileName);
-            
+        try {  
+            //Transform the loaded file to XAML.
+            transformToXAML(filePath);
         } catch (TransformerException ex) {
-            validationResult = ex.getMessage();
+            //Store a message about the thrown exception.
+            validationResult = "Exception: " + ex.getMessage();
         }
+        //Set a text displayed in the message area of the UI.
         TextArea.setText(validationResult);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -196,7 +210,6 @@ public class XFormsValidatorUI extends javax.swing.JFrame {
         });
     }
     public static boolean validateXMLSchema(String xsdPath, String xmlPath) throws SAXException{
-         
         try {
             SchemaFactory factory = 
                     SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
@@ -225,7 +238,7 @@ public class XFormsValidatorUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel MessageArea;
     private javax.swing.JTextArea TextArea;
-    private javax.swing.JTextField fileNameInTextBox;
+    private javax.swing.JTextField filePathInTextBox;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
