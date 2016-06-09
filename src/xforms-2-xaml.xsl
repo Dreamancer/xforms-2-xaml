@@ -212,8 +212,8 @@
 		<!--without the namespace attr. the output element has a xmlns="" attr.
         which would cause an exception loading it in the xaml loader. -->
 
-		<!-- Jakub: There was a redundant XAML label being generated here so I removed it.
-        The xforms select doesn't have a "general" label, only labels for its items-->
+		<xsl:apply-templates select="./*[local-name()='label' and namespace-uri()=$xf-namespace-uri]"/>
+
 		<xsl:apply-templates select="./*[local-name()='item' and namespace-uri()=$xf-namespace-uri]"/>
 	</xsl:template>
 
