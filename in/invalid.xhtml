@@ -5,15 +5,50 @@
       <title>XForms textarea</title>
       <xf:model>
          <xf:instance xmlns="">
-            <data>
-               <MyTextValue/>
-            </data>
+            <data/>
          </xf:instance>
       </xf:model>
    </head>
    <body>
+
+      <xf:fakeName ref="PersonFirstName" incremental="true">
+      <xf:label>enter first name:</xf:label>
+         </xf:fakeName>
+      <xf:fakeName ref="PersonLastName" incremental="true">
+         <xf:label>enter last name:</xf:label>
+      </xf:fakeName>
+
       <xf:textarea ref="MyTextValue">
          <xf:label>Note:</xf:label>
       </xf:textarea>
+
+      <xf:select1 ref="ColorCode" appearance="minimal" >  
+      <xf:label>list label</xf:label>
+         <xf:item>
+            <xf:label>Red</xf:label>
+            <xf:value>red</xf:value> 
+         </xf:item>
+         <xf:item>
+            <xf:label>Orange</xf:label>
+            <xf:value>orange</xf:value>
+         </xf:item>
+         <xf:item>
+            <xf:label>Yellow</xf:label>
+            <xf:value>yellow</xf:value>
+         </xf:item>
+         <xf:item>
+            <xf:label>Green</xf:label>
+            <xf:value>green</xf:value>
+         </xf:item>
+         <xf:item>
+            <xf:label>Blue</xf:label>
+            <xf:value>blue</xf:value>
+         </xf:item>
+      </xf:select1>
+
+      <xf:trigger>
+         <xf:label>button</xf:label>
+      </xf:trigger>
+
    </body>
 </html>
