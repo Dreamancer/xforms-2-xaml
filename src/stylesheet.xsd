@@ -520,7 +520,7 @@
     </xs:choice>
   </xs:group>
 
-  <xs:complexType name="Block">
+  <xs:complexType name="Block" mixed="true">
     <xs:choice minOccurs="0" maxOccurs="unbounded">
       <xs:group ref="block"/>
       <xs:element ref="form"/>
