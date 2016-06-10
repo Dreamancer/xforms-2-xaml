@@ -1,21 +1,8 @@
 package my.xformsvalidator;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
-import javax.xml.XMLConstants;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
-import javax.xml.validation.Validator;
-import org.xml.sax.SAXException;
 
 /**
  *
@@ -23,10 +10,6 @@ import org.xml.sax.SAXException;
  */
 public class XFormsValidatorUI extends javax.swing.JFrame {
 
-    //Represents a file loaded by the user.
-    public File file;
-    //Stores a path to the loaded file.
-    public static String filePath;
     //Used for storing the result of the validation, will be displayed in a message area of the UI.
     public static String validationResult;
     //Message to be displayed when the validation has been successful.
@@ -48,48 +31,63 @@ public class XFormsValidatorUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        filePathInTextBox = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        MessageArea = new javax.swing.JLabel();
+        xFormsFilenameInput = new javax.swing.JTextField();
+        xFormsFilenameChooseButton = new javax.swing.JButton();
+        validateButton = new javax.swing.JButton();
+        transformButton = new javax.swing.JButton();
+        messageAreaLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TextArea = new javax.swing.JTextArea();
+        messageArea = new javax.swing.JTextArea();
+        xamlFilenameInput = new javax.swing.JTextField();
+        xamlFilenameChooseButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("my/xformsvalidator/Bundle"); // NOI18N
         setTitle(bundle.getString("windowTitle")); // NOI18N
         setResizable(false);
 
-        filePathInTextBox.setText(bundle.getString("XFormsValidatorUI.filePathInTextBox.text")); // NOI18N
+        xFormsFilenameInput.setText(bundle.getString("XFormsValidatorUI.xFormsFilenameInput.text")); // NOI18N
 
-        jButton1.setText(bundle.getString("XFormsValidatorUI.jButton1.text")); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        xFormsFilenameChooseButton.setText(bundle.getString("XFormsValidatorUI.inputFileButton.text")); // NOI18N
+        xFormsFilenameChooseButton.setName("inputFileButton"); // NOI18N
+        xFormsFilenameChooseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                xFormsFilenameChooseButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText(bundle.getString("XFormsValidatorUI.jButton2.text")); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        validateButton.setText(bundle.getString("XFormsValidatorUI.text")); // NOI18N
+        validateButton.setName(""); // NOI18N
+        validateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                validateButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setText(bundle.getString("XFormsValidatorUI.jButton3.text")); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        transformButton.setText(bundle.getString("XFormsValidatorUI.transformButton.text")); // NOI18N
+        transformButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                transformButtonActionPerformed(evt);
             }
         });
 
-        MessageArea.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MessageArea.setText(bundle.getString("XFormsValidatorUI.MessageArea.text")); // NOI18N
+        messageAreaLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        messageAreaLabel.setText(bundle.getString("XFormsValidatorUI.messageAreaLabel.text")); // NOI18N
 
-        TextArea.setColumns(20);
-        TextArea.setRows(5);
-        jScrollPane1.setViewportView(TextArea);
+        messageArea.setColumns(20);
+        messageArea.setRows(5);
+        jScrollPane1.setViewportView(messageArea);
+
+        xamlFilenameInput.setText(bundle.getString("XFormsValidatorUI.xamlFilenameInput.text")); // NOI18N
+
+        xamlFilenameChooseButton.setText(bundle.getString("XFormsValidatorUI.xamlFilenameChooseButton.text")); // NOI18N
+        xamlFilenameChooseButton.setToolTipText(bundle.getString("XFormsValidatorUI.xamlFilenameChooseButton.toolTipText")); // NOI18N
+        xamlFilenameChooseButton.setName("inputFileButton"); // NOI18N
+        xamlFilenameChooseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xamlFilenameChooseButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,19 +95,25 @@ public class XFormsValidatorUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(MessageArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(filePathInTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(85, 85, 85))
-                    .addComponent(jScrollPane1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(xFormsFilenameChooseButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(messageAreaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(xFormsFilenameInput, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(159, 159, 159)
+                                .addComponent(validateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(transformButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(85, 85, 85))
+                            .addComponent(jScrollPane1)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(xamlFilenameChooseButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(xamlFilenameInput, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -117,63 +121,70 @@ public class XFormsValidatorUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(filePathInTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                    .addComponent(xFormsFilenameChooseButton)
+                    .addComponent(xFormsFilenameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(xamlFilenameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(xamlFilenameChooseButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(validateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(transformButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(MessageArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
+                    .addComponent(messageAreaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void xFormsFilenameChooseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xFormsFilenameChooseButtonActionPerformed
         //JFileChooser provides a simple mechanism for the user to choose a file.
         JFileChooser chooser = new JFileChooser();
         //Pops up an "Open File" file chooser dialog. 
-        chooser.showOpenDialog(null);
-        //Return the selected file and store it in a File variable.
-        file = chooser.getSelectedFile();
-        //We want to display the complete path to the file in the UI.
-        filePath = file.getAbsolutePath();
-        //Set a text in the message area to read the filepath.
-        filePathInTextBox.setText(filePath);
-    }//GEN-LAST:event_jButton1ActionPerformed
+		if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+			//Set a text in the message area to read the filepath.
+			xFormsFilenameInput.setText(chooser.getSelectedFile().getAbsolutePath());
+		}
+    }//GEN-LAST:event_xFormsFilenameChooseButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       try {
-           //Validate the loaded file against an XForms schema and mark the result in a variable.
-            boolean result = validateXMLSchema("XForms-11-Schema.xsd", file.getPath());
-           //Store a message about success if it's occurred.
-            if (result)
-            {
-                validationResult = validationSuccessful;
-            }
-        } catch (SAXException ex) {
-            //Finds or creates a logger for a named subsystem and logs a message.
-            Logger.getLogger(XFormsValidatorUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       //Set a text displayed in the message area of the UI.
-       TextArea.setText(validationResult);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void validateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validateButtonActionPerformed
+		try {
+		   XFormsTransformer transformer = new XFormsTransformer();
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try {  
-            //Transform the loaded file to XAML.
-            transformToXAML(filePath);
-        } catch (TransformerException ex) {
-            //Store a message about the thrown exception.
-            validationResult = "Exception: " + ex.getMessage();
+		   boolean isValid = transformer.validate(xFormsFilenameInput.getText());
+
+		   addMessage(isValid ? "valid" : "not valid");
+		} catch (IOException ex) {
+			addMessage("no file");
+		}
+    }//GEN-LAST:event_validateButtonActionPerformed
+
+    private void transformButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transformButtonActionPerformed
+        try {
+			XFormsTransformer transformer = new XFormsTransformer();
+
+			transformer.transformToXAML(xFormsFilenameInput.getText(), xamlFilenameInput.getText());
+			addMessage("done");
+        } catch (IOException ex) {
+			addMessage("no file");
+		} catch (TransformerException ex) {
+            addMessage(ex.getMessage());
         }
-        //Set a text displayed in the message area of the UI.
-        TextArea.setText(validationResult);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_transformButtonActionPerformed
+
+    private void xamlFilenameChooseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xamlFilenameChooseButtonActionPerformed
+        //JFileChooser provides a simple mechanism for the user to choose a file.
+        JFileChooser chooser = new JFileChooser();
+        //Pops up an "Open File" file chooser dialog.
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+			//Set a text in the message area to read the filepath.
+			xamlFilenameInput.setText(chooser.getSelectedFile().getAbsolutePath());
+		}
+    }//GEN-LAST:event_xamlFilenameChooseButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,39 +220,20 @@ public class XFormsValidatorUI extends javax.swing.JFrame {
             }
         });
     }
-    public static boolean validateXMLSchema(String xsdPath, String xmlPath) throws SAXException{
-        try {
-            SchemaFactory factory = 
-                    SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            Schema schema = factory.newSchema(new File(xsdPath));
-            Validator validator = schema.newValidator();
-            validator.validate(new StreamSource(new File(xmlPath)));
-        } catch (IOException | SAXException e) {
-            validationResult = "Exception: " + e.getMessage();
-            return false;
-        }
-        return true;
-    }
-    public static void transformToXAML(String fileName) 
-            throws TransformerConfigurationException, TransformerException {
-        
-        TransformerFactory tf = TransformerFactory.newInstance();
-        
-        Transformer xsltProc = tf.newTransformer(
-                new StreamSource(new File("xforms-2-xaml.xsl")));
-        
-        xsltProc.transform(
-                new StreamSource(fileName), 
-                new StreamResult(new File("result.xaml")));
-    }
+
+	protected void addMessage(String message) {
+		messageArea.setText(messageArea.getText() + message + "\n");
+	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel MessageArea;
-    private javax.swing.JTextArea TextArea;
-    private javax.swing.JTextField filePathInTextBox;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea messageArea;
+    private javax.swing.JLabel messageAreaLabel;
+    private javax.swing.JButton transformButton;
+    private javax.swing.JButton validateButton;
+    private javax.swing.JButton xFormsFilenameChooseButton;
+    private javax.swing.JTextField xFormsFilenameInput;
+    private javax.swing.JButton xamlFilenameChooseButton;
+    private javax.swing.JTextField xamlFilenameInput;
     // End of variables declaration//GEN-END:variables
 }

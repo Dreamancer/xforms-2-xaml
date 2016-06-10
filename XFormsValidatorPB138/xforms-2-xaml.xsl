@@ -70,7 +70,7 @@
                                           and (@nodeset = $ref or  (@ref = $ref or @id = $bind))]/@type"/>
 		<xsl:choose>
 			<!-- create date picker xaml element -->
-			<xsl:when test="ends-with($bindType,'date')">
+			<xsl:when test="ends-with($bindType, 'date')">
 				<xsl:element name="Calendar" namespace="{$xaml-namespace-uri}">
 					<!-- test if there is a nonempty ref or bind attr in the xforms input element 
 					generating an empty name attr would cause an exception loading it in the xaml loader -->
