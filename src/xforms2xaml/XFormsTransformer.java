@@ -1,6 +1,7 @@
 package xforms2xaml;
 
-import net.sf.saxon.TransformerFactoryImpl; // use saxon package because transformation contains features from XSLT 2.0
+//We are using saxon package because the transformation contains features from XSLT 2.0.
+import net.sf.saxon.TransformerFactoryImpl;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,17 +23,20 @@ import oracle.xml.util.XMLUtil;
 import org.xml.sax.SAXException;
 
 /**
+ * Transformer class that provides methods for validating XForms files and
+ * transforming them into XAML files.
  *
  * @author cepi
  */
 public class XFormsTransformer {
 
+	//Filename of the stylesheet used for the transformation.
 	public static final String XFORMS_2_XAML_TRANSFORMATION_FILENAME = "xforms-2-xaml.xsl";
-
+	//Filename of the XSD schema used for validation.
 	public static final String XFORMS_XSD_FILENAME = "xforms.xsd";
 
 	/**
-	 * Provide transformation from XForms to XAML
+	 * Provides transformation from XForms to XAML.
 	 *
 	 * @param xFormsFilename input XForms filename
 	 * @param xamlFilename output XAML filename
@@ -40,43 +44,54 @@ public class XFormsTransformer {
 	 * @throws IOException
 	 */
 	public void transformToXAML(String xFormsFilename, String xamlFilename) throws TransformerException, IOException {
+		//Attempt the transformation.
 		try {
+			//Create a transformer factory.
 			TransformerFactory transformerFactory = new TransformerFactoryImpl();
-
+			//Create a transformer with a given name.
 			Transformer transformer = transformerFactory.newTransformer(new StreamSource(new File(XFORMS_2_XAML_TRANSFORMATION_FILENAME)));
-
+			//Use a transform method on the transformer.
 			transformer.transform(new StreamSource(new FileReader(new File(xFormsFilename))), new StreamResult(new File(xamlFilename)));
 		} catch (TransformerConfigurationException ex) {
+			//Log a thrown exception.
 			Logger.getGlobal().log(Level.SEVERE, null, ex);
 		}
-    }
+	}
 
 	/**
-	 * Validate XForms file
+	 * Validates XForms file using standard Java XMLparser.
 	 *
 	 * @param xFormsFilename input XForms filename
 	 * @return result of validation
 	 * @throws IOException
 	 */
 	public boolean validate(String xFormsFilename) throws IOException {
+		//Attempt the validation.
 		try {
-			DOMParser parser  = new DOMParser();
-
+			//Create a new DOMParser.
+			DOMParser parser = new DOMParser();
+			//Create a new XSDBuilder.
 			XSDBuilder builder = new XSDBuilder();
-			XMLSchema schema = (XMLSchema)builder.build(new FileReader(new File(XFORMS_XSD_FILENAME)), XMLUtil.createURL(XMLConstants.W3C_XML_SCHEMA_NS_URI));
+			//Create a schema with a given name.
+			XMLSchema schema = (XMLSchema) builder.build(new FileReader(new File(XFORMS_XSD_FILENAME)), XMLUtil.createURL(XMLConstants.W3C_XML_SCHEMA_NS_URI));
 
+			//Set the schema on a parser.
 			parser.setXMLSchema(schema);
-			parser.setValidationMode(XMLParser.SCHEMA_LAX_VALIDATION); // lax validation due to combination XForms with other XML Formats
+			//Use LAX validation due to a combination of XForms with other XML formats.
+			parser.setValidationMode(XMLParser.SCHEMA_LAX_VALIDATION);
 
+			//Parse the input file.
 			parser.parse(new FileReader(new File(xFormsFilename)));
-
+			//Parsing has been successful.
 			return true;
-        } catch (SAXException ex) {
+		} catch (SAXException ex) {
+			//Log a SAXException.
 			Logger.getGlobal().log(Level.WARNING, null, ex);
-        } catch (XSDException ex) {
+		} catch (XSDException ex) {
+			//Log an XSDException
 			Logger.getGlobal().log(Level.SEVERE, null, ex);
 		}
-
-        return false;
+		//The validation has not been successful.
+		return false;
 	}
 }
