@@ -1,4 +1,4 @@
-package my.xformsvalidator;
+package xforms2xaml;
 
 import net.sf.saxon.TransformerFactoryImpl; // use saxon package because transformation contains features from XSLT 2.0
 import java.io.File;
@@ -69,14 +69,14 @@ public class XFormsTransformer {
 			parser.setValidationMode(XMLParser.SCHEMA_LAX_VALIDATION); // lax validation due to combination XForms with other XML Formats
 
 			parser.parse(new FileReader(new File(xFormsFilename)));
+
+			return true;
         } catch (SAXException ex) {
 			Logger.getGlobal().log(Level.WARNING, null, ex);
-			return false;
         } catch (XSDException ex) {
 			Logger.getGlobal().log(Level.SEVERE, null, ex);
-			return false;
 		}
 
-        return true;
+        return false;
 	}
 }

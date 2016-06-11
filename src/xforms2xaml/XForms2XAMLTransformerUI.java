@@ -1,4 +1,4 @@
-package my.xformsvalidator;
+package xforms2xaml;
 
 import java.io.IOException;
 import javax.swing.JFileChooser;
@@ -8,12 +8,12 @@ import javax.xml.transform.TransformerException;
  *
  * @author sittova
  */
-public class XFormsValidatorUI extends javax.swing.JFrame {
+public class XForms2XAMLTransformerUI extends javax.swing.JFrame {
     
     /**
-     * Creates new form XFormsValidatorUI
+     * Creates new form XFormsTransformerUI
      */
-    public XFormsValidatorUI() {
+    public XForms2XAMLTransformerUI() {
         initComponents();
     }
 
@@ -37,11 +37,11 @@ public class XFormsValidatorUI extends javax.swing.JFrame {
         xamlFilenameChooseButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("my/xformsvalidator/Bundle"); // NOI18N
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("xforms2xaml/Bundle"); // NOI18N
         setTitle(bundle.getString("windowTitle")); // NOI18N
         setResizable(false);
 
-        xFormsFilenameInput.setText(bundle.getString("XFormsValidatorUI.xFormsFilenameInput.text")); // NOI18N
+        xFormsFilenameInput.setText(bundle.getString("XForms2XAMLTransformerUI.xFormsFilenameInput.text")); // NOI18N
 
         xFormsFilenameChooseButton.setText(bundle.getString("XFormsValidatorUI.inputFileButton.text")); // NOI18N
         xFormsFilenameChooseButton.setName("inputFileButton"); // NOI18N
@@ -59,7 +59,7 @@ public class XFormsValidatorUI extends javax.swing.JFrame {
             }
         });
 
-        transformButton.setText(bundle.getString("XFormsValidatorUI.transformButton.text")); // NOI18N
+        transformButton.setText(bundle.getString("XForms2XAMLTransformerUI.transformButton.text")); // NOI18N
         transformButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 transformButtonActionPerformed(evt);
@@ -67,16 +67,16 @@ public class XFormsValidatorUI extends javax.swing.JFrame {
         });
 
         messageAreaLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        messageAreaLabel.setText(bundle.getString("XFormsValidatorUI.messageAreaLabel.text")); // NOI18N
+        messageAreaLabel.setText(bundle.getString("XForms2XAMLTransformerUI.messageAreaLabel.text")); // NOI18N
 
         messageArea.setColumns(20);
         messageArea.setRows(5);
         jScrollPane1.setViewportView(messageArea);
 
-        xamlFilenameInput.setText(bundle.getString("XFormsValidatorUI.xamlFilenameInput.text")); // NOI18N
+        xamlFilenameInput.setText(bundle.getString("XForms2XAMLTransformerUI.xamlFilenameInput.text")); // NOI18N
 
-        xamlFilenameChooseButton.setText(bundle.getString("XFormsValidatorUI.xamlFilenameChooseButton.text")); // NOI18N
-        xamlFilenameChooseButton.setToolTipText(bundle.getString("XFormsValidatorUI.xamlFilenameChooseButton.toolTipText")); // NOI18N
+        xamlFilenameChooseButton.setText(bundle.getString("XForms2XAMLTransformerUI.xamlFilenameChooseButton.text")); // NOI18N
+        xamlFilenameChooseButton.setToolTipText(bundle.getString("XForms2XAMLTransformerUI.xamlFilenameChooseButton.toolTipText")); // NOI18N
         xamlFilenameChooseButton.setName("inputFileButton"); // NOI18N
         xamlFilenameChooseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,20 +215,23 @@ public class XFormsValidatorUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(XFormsValidatorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(XForms2XAMLTransformerUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(XFormsValidatorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(XForms2XAMLTransformerUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(XFormsValidatorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(XForms2XAMLTransformerUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(XFormsValidatorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(XForms2XAMLTransformerUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new XFormsValidatorUI().setVisible(true);
+                new XForms2XAMLTransformerUI().setVisible(true);
             }
         });
     }
