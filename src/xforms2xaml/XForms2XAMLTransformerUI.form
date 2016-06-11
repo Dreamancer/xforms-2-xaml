@@ -29,15 +29,16 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="messageAreaLabel" min="-2" pref="101" max="-2" attributes="0"/>
+                  <Component id="xamlFilenameChooseButton" alignment="0" pref="121" max="32767" attributes="0"/>
+                  <Component id="xFormsFilenameChooseButton" alignment="0" max="32767" attributes="0"/>
+              </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="xFormsFilenameChooseButton" max="32767" attributes="0"/>
-                          <Component id="messageAreaLabel" max="32767" attributes="0"/>
-                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="xFormsFilenameInput" pref="684" max="32767" attributes="0"/>
+                          <Component id="xFormsFilenameInput" pref="678" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
                               <Component id="validateButton" min="-2" pref="114" max="-2" attributes="0"/>
@@ -48,10 +49,9 @@
                           <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="xamlFilenameChooseButton" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="xamlFilenameInput" pref="686" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                      <Component id="xamlFilenameInput" pref="678" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
