@@ -9,11 +9,6 @@ import javax.xml.transform.TransformerException;
  * @author sittova
  */
 public class XFormsValidatorUI extends javax.swing.JFrame {
-
-    //Used for storing the result of the validation, will be displayed in a message area of the UI.
-    public static String validationResult;
-    //Message to be displayed when the validation has been successful.
-    public static final String validationSuccessful = "The loaded file conforms to the XForms schema.";
     
     /**
      * Creates new form XFormsValidatorUI
@@ -152,28 +147,45 @@ public class XFormsValidatorUI extends javax.swing.JFrame {
     }//GEN-LAST:event_xFormsFilenameChooseButtonActionPerformed
 
     private void validateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validateButtonActionPerformed
-		try {
-		   XFormsTransformer transformer = new XFormsTransformer();
+		String xFormsFilename = xFormsFilenameInput.getText();
+		
+		if (xFormsFilename.isEmpty()) {
+			addMessage("Choose XForms input file");
+		} else {
+			try {
+			   XFormsTransformer transformer = new XFormsTransformer();
 
-		   boolean isValid = transformer.validate(xFormsFilenameInput.getText());
-
-		   addMessage(isValid ? "valid" : "not valid");
-		} catch (IOException ex) {
-			addMessage("no file");
+			   addMessage("Input XForms file is " + (transformer.validate(xFormsFilename) ? "" : "not ") + "valid");
+			} catch (IOException ex) {
+				addMessage("Input XForms file not exist");
+			}
 		}
     }//GEN-LAST:event_validateButtonActionPerformed
 
     private void transformButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transformButtonActionPerformed
-        try {
-			XFormsTransformer transformer = new XFormsTransformer();
+        String xFormsFilename = xFormsFilenameInput.getText();
+		String xamlFilename = xamlFilenameInput.getText();
 
-			transformer.transformToXAML(xFormsFilenameInput.getText(), xamlFilenameInput.getText());
-			addMessage("done");
-        } catch (IOException ex) {
-			addMessage("no file");
-		} catch (TransformerException ex) {
-            addMessage(ex.getMessage());
-        }
+		if (xFormsFilename.isEmpty()) {
+			addMessage("Choose XForms input file");
+		} else if (xamlFilename.isEmpty()) {
+			addMessage("Choose XAML output file");
+		} else {
+			try {
+				XFormsTransformer transformer = new XFormsTransformer();
+				
+				if (transformer.validate(xFormsFilename)) {
+					transformer.transformToXAML(xFormsFilename, xamlFilename);
+					addMessage("Transformation completed");
+				} else {
+					addMessage("Input XForms file is invalid");
+				}
+			} catch (IOException ex) {
+				addMessage("Input XForms file not exist");
+			} catch (TransformerException ex) {
+				addMessage(ex.getMessage()); // unexpected error
+			}
+		}
     }//GEN-LAST:event_transformButtonActionPerformed
 
     private void xamlFilenameChooseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xamlFilenameChooseButtonActionPerformed
