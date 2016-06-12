@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="sk">
+	<info>
+		<title>XForms2XAML</title>
+		<subtitle>Sprievodná správa</subtitle>
+		<authorgroup>
+			<author>
+				<personname>Jakub Horniak</personname>
+				<email>395904@mail.muni.cz</email>
+			</author>
+		</authorgroup>
+		<pubdate>2009-06-11</pubdate>
+	</info>
+	<para>
+		Mojou prácou na projekte bolo vytvorenie XSL transformácie na prevod dokumentov XForms do formátu XAML.
+		Najskôr bolo treba naštudovať oba formáty a určiť, ktoré XForms elementy je možné tansformovať na ich relevantné XAML verzie. Tie sme si následne rozdelili medzi sebou s kolegyňou Rivou Nathans.
+		Pracoval som v IDE Microsoft Visual Studio 2015, ktoré ponúka široký sortiment XML nástrojov (real-time validácia XML oproti schéme pri editácií kódu, IntelliSence pre XSLT, atď.)
+		Transformácia väćšiny elementov bola triviálna, no pri niektorých bolo treba brať ohľad na ich vzhľad (atribút "apperence") a podľa toho vygenerovať
+		príslušný výstupný XAML element. Po dokončení bola táto transformácia použitá v našej Java aplikácii.
+	</para>
+</article>
